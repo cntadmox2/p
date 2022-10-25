@@ -9,6 +9,8 @@ app.use(cors({origin:whiteList}))
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+const path = require('path')
 app.get('/', (req, res) => {
   res.sendFile(path.resolve('src/uploads/1663563087069.jpg'))
 })
