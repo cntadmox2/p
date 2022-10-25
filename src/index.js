@@ -1,7 +1,7 @@
 //solo npm i x usé
 var app = require('./app')
 const mongoose = require('mongoose');
-const port = 3100;
+const port =  process.env.PORT || 3100;
 
 const connectDB = async()=>{
     try {
