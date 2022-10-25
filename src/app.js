@@ -10,7 +10,7 @@ app.use(cors({origin:whiteList}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.get('/', (req, res) => {
-  res.send('GET request to the homepage')
+  res.sendFile(path.resolve('src/uploads/1663563087069.jpg'))
 })
 app.use('/galeria', router)
 
