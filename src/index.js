@@ -5,7 +5,7 @@ const port = 3100;
 
 const connectDB = async()=>{
     try {
-        await mongoose.connect('mongodb://localhost:27017/miweb',{ useNewUrlParser:true, useUnifiedTopology: true })
+        await mongoose.connect('mongodb+srv://cntadmox:xaIG9SuECizZbbUQ@cluster0.qvnkqen.mongodb.net/?retryWrites=true&w=majority');
 
         // await mongoose.connect('mongodb+srv://cntadmox:xaIG9SuECizZbbUQ@cluster0.qvnkqen.mongodb.net/?retryWrites=true&w=majority')   
          
