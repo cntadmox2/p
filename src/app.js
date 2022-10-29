@@ -4,7 +4,7 @@ const router = require('./routes/images');
 const cors = require('cors');
 
 
-const whiteList =['http://localhost:4200','http://192.168.0.10:4200','http://localhost','https://miwe.onrender.com','https://mkjdev.com']; //no sirve si es pedido por un server backend
+const whiteList =['http://localhost:4200','http://localhost:3100','http://192.168.0.10:4200','http://localhost','https://miwe.onrender.com','https://mkjdev.com']; //no sirve si es pedido por un server backend
 app.use(cors({origin:whiteList}))
 
 app.use(express.json())
