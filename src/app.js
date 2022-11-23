@@ -27,7 +27,7 @@ app.use('/galeria', router)
 //borrado auto según tiempo
 setInterval(() => {
     const fs = require('fs')
-    var uploadsDir = __dirname+ '/uploads/email';
+    var uploadsDir = (path.join(__dirname, '/uploads/email'))
     var rimraf = require('rimraf')
     fs.readdir(uploadsDir, function(err, files) {
     files.forEach(function(file, index) {
