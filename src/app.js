@@ -19,10 +19,7 @@ app.use(express.urlencoded({extended: true}))
    
 // })
 app.use('/galeria', router)
-
-
-
-    
+  
 
 //borrado auto según tiempo
 setInterval(() => {
