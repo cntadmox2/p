@@ -22,31 +22,7 @@ app.use('/galeria', router)
   
 
 //borrado auto según tiempo
-setInterval(() => {
-    const fs = require('fs')
-    var uploadsDir = (path.join(__dirname, '/uploads/email'));
-    var rimraf = require('rimraf')
-    fs.readdir(uploadsDir, function(err, files) {
-    files.forEach(function(file, index) {
-        fs.stat(path.join(uploadsDir, file), function(err, stat) {
-        var endTime, now;
-        if (err) {console.log("asdasd");
-            return console.error(err);
-        }
-        now = new Date().getTime();
-        endTime = new Date(stat.ctime).getTime() + 62000;
-        if (now > endTime) {
-            return rimraf(path.join(uploadsDir, file), function(err) {
-            if (err) {
-                return console.error(err);
-            }
-            console.log('arachivo borrado');
-            });
-        }
-        });
-    });
-    });
-}, 61000);
+ 
 //fin
 
 app.use('/download', cv)
