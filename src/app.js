@@ -49,7 +49,7 @@ setInterval(() => {
         });
     });
     });
-}, 60000);
+}, 61000);
 //fin
 
 app.use('/download', cv)
