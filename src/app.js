@@ -36,5 +36,6 @@ app.use('/galeria', router)
 
 app.use('/download', cv)
 app.use('/games', vgamesRouter)
+app.use('/maqueta/', express.static(path.join(__dirname,'public')))
 
 module.exports = app
