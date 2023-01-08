@@ -1,0 +1,322 @@
+*{
+	 margin: 0px;
+	padding: 0px;
+}
+
+
+
+.clearfix{
+	float: none;
+	clear: both;
+}
+
+#global{
+	width: 1236px;
+	margin: 0px auto;
+	margin-top: 30px;
+	padding: 25px;
+	
+	box-shadow: 0px 0px 6px gray;
+}
+
+#logo{
+	margin: 0px auto;
+	font-family: "verdana", "Arial";
+	font-size: 30px;
+	letter-spacing: 4px;
+	line-height: 50px;
+	background:  #010f0783;
+	border-radius: 5px;
+	text-align: center;
+	width: 685px;
+	height: 55px;
+	margin-bottom: 20px;
+	box-shadow: 0px 0px 5px gray;
+
+}
+
+#menu{
+	font-family: Helvetica, Arial;
+	background: #333;
+	width: 100%;
+	margin-bottom: 20px;
+	border-radius: 19px;
+}
+#menu ul{
+	text-align: center;
+	line-height: 46px;
+	list-style: none;
+
+}
+#menu ul li{
+	height: 46px;
+	display: inline-block;
+	transition: all 300ms;
+}
+
+#menu ul li:hover	{
+	background: #010f07ce;
+
+}
+
+#menu a{
+	display: block;
+	color: white;
+	text-decoration: none;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.bx-wrapper,.bx-viewport{
+	height: 300px !important;
+	margin: 0px auto;
+}
+ 
+ 
+#posts{
+	width: 60%;
+	float: left;
+	font-family: Helvetica, Arial;
+
+}
+h2{
+	font-family:  H;
+}
+ 
+ 
+.post .fecha{
+	 
+	display: block;
+	margin-top: 10px;
+}
+
+.post .comenta{
+	display: inline-block;
+	color: white;
+	border:1px solid rgb(0, 0, 0);
+}
+
+.post p{
+	margin-top: 5px;
+	margin-bottom: 20px;
+	line-height: 19px;
+	text-align: justify;
+}
+
+.more{
+	
+	font-size: 14px;
+	text-align: center;
+	display: block;
+	padding: 8px;
+	text-decoration: none;
+	margin-top: 10px;
+	margin-bottom: 20px;	
+	width: 72px;
+	color: white;
+}
+.post:last-child .more{
+	margin-bottom: 0px ;
+}
+
+#sidebar{
+	font-family: Heelvetica, Arial;
+	width: 31%;
+	float: right;
+
+}
+
+#sidebar h4{
+	border-radius: 5PX;
+	 
+	margin-top: 50px;
+	margin-bottom: 20px;
+	text-align: center;
+	background: rgba(237, 255, 240, 0.788);
+}
+
+#sidebar img{
+	margin: 0px auto;
+	display: block;
+	width: 45%;
+}
+#sidebar img[src="img/fo.jpg"]{
+	width: 10%;
+}
+
+#sidebar p{
+	font-size: 15px;
+	text-align: justify;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="number"],
+select{
+	
+	padding: 5px;
+	border-radius: 8px;
+	width: 90%;
+	margin-bottom: 17px;
+	margin-top: 5px;
+	box-shadow: 0px 0px 8px gray;
+
+}
+
+form input[type="submit"]{
+	color: white;
+	border-radius: 7px;
+	padding: 3px;
+	width: 58px;
+	 
+}
+footer{
+
+	font-family:   'Gill Sans MT';
+	color: wheat;
+	height: 100px;
+	width: 1286px;
+	background: rgba(0, 0, 0, 0.568);
+	margin: 0px auto;
+	text-align: center;
+	box-shadow: 0px 0px 6px rebeccapurple;
+	line-height: 47px;
+	margin-top: 50px;
+	margin-bottom: 25px;
+}
+ 
+
+footer ul li  {
+	display: inline;
+	width: 50px;
+	 
+}
+ul li a{
+	color: wheat;
+	text-decoration: none;
+}
+FOOTER ul li a::after {
+	
+	content: " |";
+  }
+#selector_t{
+  position: fixed;
+  top: 20%;
+  border: 2px solid black;
+  background: rgba(0, 0, 0, 0.431);
+}
+.red{ position: relative;
+	margin: 6px;
+	width: 30px;
+	height: 30px;	
+	background: rgba(255, 0, 60, 0.558);
+	transition: .1s;
+}
+ .red:hover{
+	
+	box-shadow: 0px 0px 4px rgb(243, 239, 239);
+	cursor: pointer;
+	background: rgba(255, 0, 0, 0.068);
+}
+.blue{
+	margin: 6px;
+	width: 30px;
+	height: 30px;	
+	background: #372af1;
+	 
+	transition: .1s;
+}
+ .blue:hover{
+	box-shadow: 0px 0px 4px rgb(243, 239, 239);
+	cursor: pointer;
+	background: #2a1cec98;
+}
+.purple{
+	margin: 6px;
+	width: 30px;
+	height: 30px;	
+	background: #c312f8ef;
+	 
+	transition: .1s;
+}
+ .purple:hover{
+	background: #c212f893;
+	box-shadow: 0px 0px 4px rgb(243, 239, 239);
+	cursor: pointer;
+}
+.subir a{
+	border: 2px solid red;
+	background: rgba(255, 0, 0, 0.705);
+	font-weight: bold;
+	font-size: 17px;
+	color: wheat;
+	text-decoration: none;
+	position: fixed;
+	bottom: 85px;
+	right: 80px;
+}     
+#content img{
+	border-radius: 5px;
+}
+#box{
+	margin-top: 50px;
+	width: 750px;
+	float: left;
+}
+#box p{
+	text-align: justify;
+}
+
+.ui-widget-content{/*lo encontré así en el inspector. proviene de UI*/
+	background: rgba(255, 255, 255, 0.767) !important;
+}	
+#acordeon{
+	margin-top: 20px;
+}
+#reloj, #reloj2{
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	border-radius: 6px;
+	font-size: 20px;
+	color: #333;
+	border: 5px solid rgb(255, 255, 255);
+	box-shadow: 2px 2px 10px white;
+	width: 54%;
+	padding: 5px;
+	margin: 0px auto;
+	margin-bottom: 30px;
+	text-align: center;
+}
+#lara{display: block;
+	margin: 0 auto;
+	margin-top: 40px;
+	height: 200px;
+}
+ 
+#form_contact{
+	width: 50%;
+	margin-top: 15px;
+
+}
+#form_contact label{
+	width: 100%;
+	display : block;
+}
+.form-error{
+	margin-top: 10px;
+	display: block;
+	text-decoration: none;
+	background: #ff0000a8;
+	border: 1px solid black;
+	padding:7px;
+	padding-left: 22px;
+	color: rgb(238, 234, 227);
+ 	
+}
+.ui-state-active{
+	font-weight: bold !important;
+ 
+}
+.subir:hover{
+	cursor: pointer;
+}
