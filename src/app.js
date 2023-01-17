@@ -8,7 +8,7 @@ const path = require('path')
 
 //login
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
+
 
 const whiteList =['http://localhost:4200','http://localhost:3100','http://192.168.0.10:4200','http://localhost','https://miwe.onrender.com','https://mkjdev.com','http://mkjdev.com','http://localhost:4210','http://127.0.0.1:5500']; //no sirve si es pedido por un server backend
 app.use(cors({origin:whiteList}))
