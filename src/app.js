@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: true}))
 //     res.sendFile(path.join(__dirname,'miweb/t.txt'))
 // })
 
-app.use(cookieParser('algo'));
+ 
 app.use(session({
     secret:'algo',
     resave:true,        //si la sesión no se modificala guarda igual
