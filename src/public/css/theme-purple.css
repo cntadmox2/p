@@ -1,0 +1,53 @@
+
+
+#logo{
+	color: #7a12f8ef;
+ 
+}
+body{
+	background: url('../img/purp.png');
+	background-attachment: fixed;
+	background-size:100%;
+}
+#global{
+    background: #7a12f8ba;
+    color:  #fef9ff;
+}
+ 
+.post{
+    color: seashell;
+}
+.post .comenta{
+	background: #c312f8ef;
+
+}
+.more{
+ 
+	background: #c312f8ef;
+ 
+}
+#sidebar h4{
+	color:#c312f8ef;
+ 
+}
+form input[type="text"],
+form input[type="password"],
+form input[type="email"]{
+ 
+	border: 2px solid#c312f8ef;
+}
+form input[type="submit"]{
+	background: #c312f8ef;
+	 
+}
+ 
+#reloj, #reloj2{
+	color: rgb(255, 255, 255); 
+}
+
+.ui-state-active{ /*lo encontré así en el inspector. proviene de UI*/
+	border: 1px solid #c312f8ef !important;
+	background: #c312f8ef !important;
+	color: white !important;
+
+}

@@ -1,0 +1,49 @@
+#logo{
+	color: #2a1cec;
+ 
+}
+body{
+	background: url('../img/blue.jpg');
+	background-attachment: fixed;
+	background-size:100%;
+}
+#global{
+    background: #2a1cecb2;
+    color:  #fef9ff;
+ 
+}
+ 
+.post{
+    color: seashell;
+}
+.post .comenta{
+	background: #2a1cec;
+
+}
+.more{
+ 
+	background: #2a1cec;
+ 
+}
+#sidebar h4{
+	color:#2a1cec;
+ 
+}
+form input[type="text"],
+form input[type="password"],
+form input[type="email"]{
+ 
+	border: 2px solid#2a1cec;
+}
+form input[type="submit"]{
+	background: #2a1cec;
+	 
+}
+
+
+.ui-state-active{ /*lo encontré así en el inspector. proviene de UI*/
+	border: 1px solid #007fff;
+	background: #007fff ;
+	color: white ;
+ 
+}
