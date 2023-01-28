@@ -1,6 +1,6 @@
 const {createPool} = require('mysql2/promise');
 const path = require('path')
- require('dotenv').config({ path: path.resolve(  '/etc/secrets/.env')});
+ require('dotenv').config({ path: path.resolve(  './etc/secrets/.env')});
  
 const pool= createPool({
     host:process.env.HOSTDB_ON, //shared ip address de mi cpanel jodeeeer al fin coñooo
