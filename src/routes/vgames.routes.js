@@ -2,14 +2,17 @@ const {Router}=require('express');
 const vgamesRouter = Router();
 
 const vgamesControll= require('../controllers/vgames')
-const autMiddleware = require('../middleware/session')
+const authMiddleware = require('../middleware/session')
+const authEmail = require('../middleware/verify')
 //USERS
 
 vgamesRouter.post('/verify-user', vgamesControll.verifyUser);
 
-vgamesRouter.post('/verify-email', vgamesControll.verifyMail);
+vgamesRouter.post('/exist-email', vgamesControll.existEmail);
 
 vgamesRouter.get('/get/:id', vgamesControll.getUser);
+//REGISTER
+vgamesRouter.post('/verify-email/:verification', authEmail, vgamesControll.verifyEmail);
 
 vgamesRouter.post('/post', vgamesControll.postUser)
 
@@ -22,20 +25,21 @@ vgamesRouter.get('/getgame/:id', vgamesControll.getGame);
 
 vgamesRouter.get('/getgames', vgamesControll.getGames);
 
-vgamesRouter.get('/mygames', autMiddleware, vgamesControll.myGames);    //midleware que permite o no pasar según token
+vgamesRouter.get('/mygames', authMiddleware, vgamesControll.myGames);    //midleware que permite o no pasar según token
 
-vgamesRouter.post('/postgames', autMiddleware, vgamesControll.postGames)
+vgamesRouter.post('/postgames', authMiddleware, vgamesControll.postGames)
 
-vgamesRouter.patch('/updategame',  autMiddleware, vgamesControll.updategame);//patch modificaciones parciales
+vgamesRouter.patch('/updategame',  authMiddleware, vgamesControll.updategame);//patch modificaciones parciales
 //uso post porque angular no puede enviar body por delete o aún no sé como
-vgamesRouter.post('/deletegame', autMiddleware, vgamesControll.deleteGame);
+vgamesRouter.post('/deletegame', authMiddleware, vgamesControll.deleteGame);
 
-vgamesRouter.post('/sendemail', vgamesControll.sendEmail)
 
 //login
 vgamesRouter.post('/login', vgamesControll.loginUser);
 
-vgamesRouter.post('/verify-token', vgamesControll.verifyToken); 
+vgamesRouter.post('/verify-token', vgamesControll.verifyToken);
+
+
  
 
  

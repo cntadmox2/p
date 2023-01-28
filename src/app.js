@@ -10,7 +10,7 @@ const path = require('path')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
-const whiteList =['http://localhost:4200','http://localhost:3100','http://192.168.0.10:4200','https://miwe.onrender.com','https://mkjdev.com','http://mkjdev.com','http://localhost:4210','http://127.0.0.1:5500']; //no sirve si es pedido por un server backend
+const whiteList =['http://localhost:4200','http://localhost:3100','http://192.168.0.10:4200','https://miwe.onrender.com','https://mkjdev.com','http://mkjdev.com','http://127.0.0.1:5500', 'http://localhost']; //no sirve si es pedido por un server backend
 app.use(cors({origin:whiteList}))
 
 app.use(express.json())
@@ -55,6 +55,79 @@ app.use('/galeria', router)
 
 app.use('/download', cv)
 app.use('/games', vgamesRouter)
+console.log( __dirname +'/templates/logo-page.png');
+const transport = require('./config/emailer')
+app.use('/mail', function (req, res) {
+    const {email, name, last_name, phone, message} = req.body
+console.log("Enviando correo desde página web");
+    let options={
+        from:process.env.USER, // sender address         req.body.email
+        to: email,// destino a si mismo "mail1", "mail2"       process.env.USER
+        subject: 'Correo desde página web', // Subject line
+        attachments: [{
+            filename: 'logo-page.png',
+            path: __dirname +'/templates/logo-page.png',
+            cid: 'logo-page' //my mistake was putting "cid:logo@cid" here! 
+       }],
+        html:` 
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                 .container{
+                     background-image: linear-gradient(to right bottom, #2c282a, #2b2729, #2a2628, #292527, #282426, #272325, #262224, #252123, #242022, #231f21, #221e20, #211d1f);
+                     color: white;
+                     width: 600px; 
+                     min-height: 500px;
+                     border-radius: 10px; 
+                     padding-top: 20px; 
+                 }
+                 .inset{
+                    padding: 50px;
+                    padding-top: 10px;
+                 }
+                 .mensaje{
+                    text-align: justify;
+                    font-weight: normal;
+                 }
+                 .nombre,.correo, .phone{
+                    color: rgb(47, 144, 255);
+                 }
+                 img{
+                    margin: 0 auto;
+                    display: block;
+                 }
+                 
+                
+                    
+            </style>
+        </head>
+        <body>
+        
+            <div class="container">
+                <img src="cid:logo-page" alt="">
+                <div class="inset">
+                    <h3>Este message fue enviado por: <span class="nombre">${name} ${last_name}</span></h3>
+                    <br>
+                    <h2 class="mensaje">${message}</h2>
+                    <br>
+                    <h3>Correo electrónico: <span class="correo">${email}</span></h3>
+                    <h3 class="phone">${phone}</h3>
+                </div>
+            </div>
+        </body>
+        </html>
+        `}
+
+        transport.sendMail(options, (error, info) => {
+            if (error) {
+                res.status(200).send({"message":error.message});
+            } else {
+                res.status(200).send({"message":"Enviando correo desde página web"});
+            }
+        });
+})
 
 app.use('/maqueta/', express.static(path.join(__dirname,'public')))
 

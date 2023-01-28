@@ -1,9 +1,9 @@
-const {tokenSign, verifyToken} = require('../utils/handleJwt')
+const { verifyToken } = require('../utils/handleJwt')
 const pool =require('../config/db');
 const autMiddleware = async (req, res, next)=>{
     try {
         if(!req.headers.authorization){
-            res.status(401).send("NEED_SESSION (token beare)")
+            res.status(401).send("NEED_SESSION")
             return
         }
 
