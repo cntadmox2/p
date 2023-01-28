@@ -1,5 +1,5 @@
 const {createPool} = require('mysql2/promise');
-etc/secrets/
+const path = require('path')
  require('dotenv').config({ path: path.resolve(  './etc/secrets/<filename/.env')});
  
 const pool= createPool({
