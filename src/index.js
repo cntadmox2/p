@@ -1,15 +1,17 @@
 //solo npm i x usé
 if (process.env.NODE_ENV==='development'){
-    const path = require('path')
     require('dotenv').config();
 }
 
- 
  
 var app = require('./app')
 const mongoose = require('mongoose');
 const port =  process.env.PORT || 3100;
 
+// const path = require('path')
+// require('ejs')
+// app.set('view engine', 'ejs')
+// app.set('views', path.join(__dirname, 'models'))
 const connectDB = async()=>{
     try {
         
@@ -32,5 +34,3 @@ const connectDB = async()=>{
 "file:///C:/Users/NkSh/.vscode/extensions/thecodemonkey.synthwave-x-fluoromachine-epic-animations-1.4.13/epic-80s-transitions.css"
 
 connectDB()
-
- 
