@@ -7,11 +7,7 @@ if (process.env.NODE_ENV==='development'){
 var app = require('./app')
 const mongoose = require('mongoose');
 const port =  process.env.PORT || 3100;
-
-// const path = require('path')
-// require('ejs')
-// app.set('view engine', 'ejs')
-// app.set('views', path.join(__dirname, 'models'))
+ 
 const connectDB = async()=>{
     try {
         
