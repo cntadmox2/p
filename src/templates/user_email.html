@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+         .container{
+             background-image: linear-gradient(to right bottom, #2c282a, #2b2729, #2a2628, #292527, #282426, #272325, #262224, #252123, #242022, #231f21, #221e20, #211d1f);
+             color: white;
+             width: 600px; 
+             min-height: 500px;
+             border-radius: 10px; 
+             padding-top: 20px; 
+         }
+         .inset{
+            padding: 50px;
+            padding-top: 10px;
+         }
+         .mensaje{
+            text-align: justify;
+            font-weight: normal;
+         }
+         .nombre,.correo, .phone{
+            color: rgb(47, 144, 255);
+         }
+         img{
+            margin: 0 auto;
+            display: block;
+         }
+         
+        
+            
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo-page.png" alt="">
+        <img src="cid:logo-page" alt="">
+        <div class="inset">
+            <h3>Este message fue enviado por: <span class="nombre">${name} ${last_name}</span></h3>
+            <br>
+            <h2 class="mensaje">${message} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim eligendi minus, aliquid perferendis cupiditate reprehenderit eos sint delectus debitis repellendus iste quo voluptatibus, culpa, ex aliquam? Earum et pariatur voluptatum?</h2>
+            <br>
+            <h3>Correo electrónico: <span class="correo">${email}</span></h3>
+            <h3 class="phone">${phone}</h3>
+        </div>
+    </div>
+</body>
+</html>
