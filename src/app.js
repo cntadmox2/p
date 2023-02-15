@@ -148,4 +148,26 @@ app.use('/maqueta/', express.static(path.join(__dirname,'public')))
 //     }
 // })
 
+const fs = require('fs');
+const Client = require('ftp');
+const config ={
+  host: process.env.HOST_FTP, // Aquí va el host del servidor FTP
+  user: process.env.USER_FTP, // Aquí va el usuario FTP
+  password: process.env.PASS_FTP // Aquí va la contraseña FTP
+}
+const path = require('path')
+    //joining path of directory 
+        const directoryPath = path.join(__dirname+'/unknown'); 
+        //passsing directoryPath and callback function
+        fs.readdir(directoryPath, function (err, files) {
+            //handling error
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
+            } 
+            //listing all files using forEach
+            files.forEach(function (file) {
+                // Do whatever you want to do with the file
+                console.log(file); 
+            });
+        });
 module.exports = app
