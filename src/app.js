@@ -155,19 +155,29 @@ const config ={
   user: process.env.USER_FTP, // Aquí va el usuario FTP
   password: process.env.PASS_FTP // Aquí va la contraseña FTP
 }
-const path = require('path')
-    //joining path of directory 
-        const directoryPath = path.join(__dirname+'/unknown'); 
-        //passsing directoryPath and callback function
-        fs.readdir(directoryPath, function (err, files) {
-            //handling error
+
+app.get('/ftp-files', (req, res) => {
+  const client = new Client();
+
+  client.connect(config);
+
+  client.on('ready', function() {
+    client.cwd('/public_html/zclips', function(err) {//escojo ruta y luego iobtengo archivos, si no pues ni uso cwd ni su err
+        if (err) {
+            res.status(500).send('Error al cambiar directorio remoto');
+            return;
+        }
+
+        client.list(function(err, list) {
             if (err) {
-                return console.log('Unable to scan directory: ' + err);
-            } 
-            //listing all files using forEach
-            files.forEach(function (file) {
-                // Do whatever you want to do with the file
-                console.log(file); 
-            });
+                res.status(500).send('Error al obtener lista de archivos');
+            } else {
+                const files = list.map(file => file.name);
+                res.send(files);
+            }
+            client.end();
         });
+    });
+});
+});
 module.exports = app
