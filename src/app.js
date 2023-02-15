@@ -173,6 +173,7 @@ app.get('/ftp-files', (req, res) => {
                 res.status(500).send('Error al obtener lista de archivos');
             } else {
                 const files = list.map(file => file.name);
+             console.log(files);
                 res.send(files);
             }
             client.end();
