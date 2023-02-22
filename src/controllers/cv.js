@@ -14,12 +14,12 @@ var descargar ={
 
   sendEmail: async (req, res) => {//creo quesolo se puede enviar a sí mismo
   console.log(req.body.email,req.body.name,req.body.message, req.body.image, req.body.file)
-    let options={
-      from: req.body.email, // sender address
-      to: process.env.USER,// destino a si mismo "mail1", "mail2"
-      subject: req.body.name, // Subject line
-      text: "", // plain text body
-      html: `<b>${req.body.message}</b>` 
+  let options={
+    from: process.env.USER_C, // sender address
+    to: process.env.USER_C,// destino a si mismo "mail1", "mail2"
+    subject: req.body.email , // Subject line
+    text: "", // plain text body
+    html: `<b>${req.body.name} ${req.body.namereq.body.message}</b>` 
     }
     if (req.body.image != "" && req.body.file != "") {
       options.attachments = [{ // utf-8 string as an attachment
