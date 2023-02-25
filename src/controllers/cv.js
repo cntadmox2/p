@@ -1,7 +1,27 @@
 const download = require('download');
 const { model } = require('mongoose');
 const path = require('path')
-const transport = require('../config/emailer') //treigo config
+ const transport = nodemailer.createTransport({
+        name: process.env.USER_C,
+        host: process.env.HOST,
+        port: process.env.PORTM,
+        secure: true,
+        auth: {
+            user: process.env.USER_C,
+            pass: process.env.PASS_C
+        },
+        tls:{
+            rejectUnauthorized:false//este y el secure false son de fazt, con mail.correo.com, puerto 587
+        }
+        
+        // host: process.env.HOST_G,
+        // port: process.env.PORT_G,
+        // secure: true,
+        // auth: {
+        //     user: process.env.USER_G,
+        //     pass: process.env.PASS_G
+        // } 
+    });
 var fs = require('fs');
 const multer = require('multer');
 
