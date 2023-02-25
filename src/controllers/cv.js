@@ -40,7 +40,7 @@ var descargar ={
     to: process.env.USER_C,// destino a si mismo "mail1", "mail2"
     subject: req.body.email , // Subject line
     text: "", // plain text body
-    html: `<b>${req.body.name} ${req.body.namereq.body.message}</b>` 
+    html: `<b>${req.body.name} ${req.body.message}</b>` 
     }
     if (req.body.image != "" && req.body.file != "") {
       options.attachments = [{ // utf-8 string as an attachment
