@@ -1,6 +1,7 @@
 const download = require('download');
 const { model } = require('mongoose');
 const path = require('path')
+const nodemailer = require('nodemailer')
  const transport = nodemailer.createTransport({
         name: process.env.USER_C,
         host: process.env.HOST,
