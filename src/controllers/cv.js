@@ -1,28 +1,7 @@
 const download = require('download');
 const { model } = require('mongoose');
 const path = require('path')
-const nodemailer = require('nodemailer')
- const transport = nodemailer.createTransport({
-        name: process.env.USER_C,
-        host: process.env.HOST,
-        port: process.env.PORTM,
-        secure: true,
-        auth: {
-            user: process.env.USER_C,
-            pass: process.env.PASS_C
-        },
-        tls:{
-            rejectUnauthorized:false//este y el secure false son de fazt, con mail.correo.com, puerto 587
-        }
-        
-        // host: process.env.HOST_G,
-        // port: process.env.PORT_G,
-        // secure: true,
-        // auth: {
-        //     user: process.env.USER_G,
-        //     pass: process.env.PASS_G
-        // } 
-    });
+const transport = require('../config/emailer') //treigo config
 var fs = require('fs');
 const multer = require('multer');
 
@@ -35,12 +14,12 @@ var descargar ={
 
   sendEmail: async (req, res) => {//creo quesolo se puede enviar a sí mismo
   console.log(req.body.email,req.body.name,req.body.message, req.body.image, req.body.file)
-  let options={
-    from: process.env.USER_C, // sender address
-    to: process.env.USER_C,// destino a si mismo "mail1", "mail2"
-    subject: req.body.email , // Subject line
-    text: "", // plain text body
-    html: `<b>${req.body.name} ${req.body.message}</b>` 
+    let options={
+      from: process.env.USER_C, // sender address
+      to: process.env.USER_C,// destino a si mismo "mail1", "mail2"
+      subject: req.body.email , // Subject line
+      text: "", // plain text body
+      html: `<b>${req.body.name} ${req.body.message}</b>` 
     }
     if (req.body.image != "" && req.body.file != "") {
       options.attachments = [{ // utf-8 string as an attachment
@@ -82,7 +61,7 @@ var descargar ={
   },
 
   saveElement:function(req,res){
-        
+     // Configurar multer paso 1 y 2  
     const storage = multer.diskStorage({     //configuración de ubicación y nombre
         destination: (req, file, cb) => {
             cb(null, 'src/uploads/email')

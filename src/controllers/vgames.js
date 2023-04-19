@@ -83,10 +83,7 @@ async function sendEmail(email, urlVerification) {
         
 }
 
-async function sendEmail2(params,sd) {
-    return res.status(200).send({"ffffff":"ds"})
-    return "llllll33"
-}
+ 
 
 var juegos ={
  //USUARIOS
@@ -163,8 +160,7 @@ var juegos ={
                 [email, username, hash, 0]);
 
                 //hacer token para verificar
-                const newUser ={ "email":email, "username":username};
-                const tokenmail = await tokenEmail(newUser)
+                const tokenmail = await tokenEmail(req.body);
                 const urlVerification = process.env.URL_QUERY+tokenmail
 
                 //enviar correo
@@ -252,43 +248,38 @@ var juegos ={
 
 
     },   //login
-    loginUser:async(req,res)=>{// games/login
-        const credenciales = req.body;  //  {email:'',password:''}
+  
+
+    loginUser: async (req, res) => {// games/login
         try {
-            const [rows] = await pool.query('SELECT *  FROM users  WHERE email = ?',[credenciales.email]);
-            console.log(rows[0].email_verified);
-
-            bcrypt.compare(credenciales.password, rows[0].password, async function(err, result) {//regresa true/false al comparar
-                if(err) return res.status(400).send("Error")
-                if(result) {
-                    //luego de comprobar pass correcta verifica si email verificado
-                    if(!rows[0].email_verified){
-                        console.log("No verificado, enviando nuevo correo");
-
-                        //hacer token para verificar
-                        const newUser ={ "email":rows[0].email, "username":rows[0].username};
-                        const tokenmail = await tokenEmail(newUser)
-                        const urlVerification = process.env.URL_QUERY+tokenmail
-                        await sendEmail(rows[0].email, urlVerification)
-                        return res.status(200).send({tokenmail})
-                    }
-
-                    const user={"id":rows[0].user_id, "email":credenciales.email};
-                    return res.status(200).send({
-                        "token": await tokenSign(user),
-                        "id":rows[0].user_id,
-                        "username":rows[0].username
-                    })
-                }
-                if(!result) console.log("redenciales incorrectas"); return res.status(401).send("Credenciales incorrectas")
-
-             });
+          const { email, password } = req.body;//  {email:'',password:''}
+          const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+      
+          const user = rows[0];
+          const passwordMatch = await bcrypt.compare(password, user.password);//regresa true/false al comparar
+          const emailVerified = user.email_verified;
+      
+          if (passwordMatch) {
+            if (!emailVerified) {//luego de comprobar pass correcta verifica si email verificado
+                //hacer token para verificar
+              const tokenmail = await tokenEmail({ email: user.email, username: user.username });
+              const urlVerification = `${process.env.URL_QUERY}${tokenmail}`;
+              await sendEmail(user.email, urlVerification);
+              return res.status(200).send({ tokenmail });
+            } else {
+              const token = await tokenSign({ id: user.user_id, email });
+              return res.status(200).send({ token, id: user.user_id, username: user.username });
+            }
+          } else {
+            console.log("Credenciales incorrectas");
+            return res.status(401).send("Credenciales incorrectas");
+          }
         } catch (error) {
-            return res.status(404).send(error)
+          console.log(error);
+          return res.status(404).send(error);
         }
-
-
-    },
+      },
+      
 
 
     verifyToken:async(req,res)=>{// games/verify-token      verificar token Login

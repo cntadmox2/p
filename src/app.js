@@ -3,6 +3,7 @@ const app = express();
 const router = require('./routes/images'); 
 const cv = require('./routes/cv'); 
 const vgamesRouter = require('./routes/vgames.routes');
+const tiendaRouter = require('./routes/tienda.routes');
 const cors = require('cors');
 const path = require('path')
 
@@ -10,7 +11,7 @@ const path = require('path')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
-const whiteList =['http://localhost:4200','http://localhost:3100','http://192.168.0.10:4200','https://miwe.onrender.com','https://mkjdev.com','http://mkjdev.com','http://127.0.0.1:5500', 'http://localhost']; //no sirve si es pedido por un server backend
+const whiteList =['http://localhost:4200','http://localhost:3100','http://192.168.0.10:4200','https://miwe.onrender.com','https://mkjdev.com','http://mkjdev.com','http://localhost:50930', 'http://localhost','http://127.0.0.1:5501']; //no sirve si es pedido por un server backend
 app.use(cors({origin:whiteList}))
 
 app.use(express.json())
@@ -24,6 +25,9 @@ app.use(session({
     saveUninitialized:true     //si se inicia y no 
 }))
 app.use('/galeria', router)
+app.use('/download', cv)
+app.use('/games', vgamesRouter)
+app.use('/tienda', tiendaRouter)
 
 //borrado auto según tiempo
 // setInterval(() => {
@@ -53,12 +57,11 @@ app.use('/galeria', router)
 // }, 10000);
 //fin
 
-app.use('/download', cv)
-app.use('/games', vgamesRouter)
+
 const transport = require('./config/emailer')
 app.use('/mail', function (req, res) {
     const {email, name, last_name, phone, message} = req.body
-console.log("Enviando correo desde página web");
+    console.log("Enviando correo desde página web");
     let options={
         from:process.env.USER, // sender address         req.body.email
         to: email,// destino a si mismo "mail1", "mail2"       process.env.USER
@@ -130,55 +133,16 @@ console.log("Enviando correo desde página web");
  
 app.use('/maqueta/', express.static(path.join(__dirname,'public')))
 
-// app.use('/maqueta3', (req,res)=>{
-//     // return res.status(200).send({"lskdjfsd":"sdkl"})
-//     let file = ('./sendfiles/public/index.html',{root:__dirname})
-//     res.send({file})
-// })
-
-
-// app.use('/maqueta3', async (req,res)=>{
-
-// const {readFile} = require('fs/promises'); //{} para escoger  require('fs').readFile; una de sus propiedades
  
-//     try{
-//         res.send( await readFile('./src/sendfiles/public/index.html' , 'utf-8'));
-//     }catch (error){
-//         console.log(error);
-//     }
-// })
+ 
+  
+//eliminar
+// c.on('ready', function() {
+//     c.delete(remoteFilePath, function(err) {
+//       if (err) throw err;
+//       c.end();
+//     });
+//   });
+  
 
-const fs = require('fs');
-const Client = require('ftp');
-const config ={
-  host: process.env.HOST_FTP, // Aquí va el host del servidor FTP
-  user: process.env.USER_FTP, // Aquí va el usuario FTP
-  password: process.env.PASS_FTP // Aquí va la contraseña FTP
-}
-
-app.get('/ftp-files', (req, res) => {
-  const client = new Client();
-
-  client.connect(config);
-
-  client.on('ready', function() {
-    client.cwd('/public_html/zclips', function(err) {//escojo ruta y luego iobtengo archivos, si no pues ni uso cwd ni su err
-        if (err) {
-            res.status(500).send('Error al cambiar directorio remoto');
-            return;
-        }
-
-        client.list(function(err, list) {
-            if (err) {
-                res.status(500).send('Error al obtener lista de archivos');
-            } else {
-                const files = list.map(file => file.name);
-             console.log(files);
-                res.send(files);
-            }
-            client.end();
-        });
-    });
-});
-});
 module.exports = app
